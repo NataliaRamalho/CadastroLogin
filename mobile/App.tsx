@@ -1,11 +1,10 @@
 import React from 'react';
-import { Login } from './src/pages/Login';
-import { Register } from './src/pages/Register';
+import Routes from './src/routes';
 
 
 export default function App() {
   return (
-        <Register/>
+        <Routes/>
   );
 }
 

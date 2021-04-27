@@ -14,11 +14,13 @@ import { Button } from "../components/Button";
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import colors from "../styles/colors";
+import { useNavigation } from "@react-navigation/core";
 
 export function Login() {
   const[email, setEmail] = useState<String>()
   const[password, setPassword] = useState<String>()
   const [hide, setHide] = useState(true);
+  const navigation = useNavigation();
 
   function handleInputEmail(value: string){
      setEmail(value)
@@ -38,7 +40,10 @@ export function Login() {
     if(!password){
       return Alert.alert('Voce não digitou sua senha 🧐')
     }
+  }
 
+  function goRegister(){
+    navigation.navigate('Register')
   }
 
   return (
@@ -76,7 +81,7 @@ export function Login() {
           </RectButton>
           <Button title="Logar" onPress={handleSubmit}/>
           
-          <Button title="Ir para o cadastro"/>
+          <Button title="Ir para o cadastro" onPress={goRegister}/>
         </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>

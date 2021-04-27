@@ -14,12 +14,14 @@ import { Button } from "../components/Button";
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import colors from "../styles/colors";
+import { useNavigation } from "@react-navigation/core";
 
 export function Register() {
   const[name, setName] = useState<String>()
   const[email, setEmail] = useState<String>()
   const[password, setPassword] = useState<String>()
   const [hide, setHide] = useState(true);
+  const navigation = useNavigation();
 
   function handleInputName(value: string){
     setName(value)
@@ -32,7 +34,6 @@ export function Register() {
   function handleInputPassword(value: string){
     setPassword(value)
  }
-
 
   function handleHide() {
     setHide(!hide);
@@ -47,9 +48,15 @@ export function Register() {
     if(!password){
       return Alert.alert('Voce não digitou sua senha 🧐')
     }
-    Alert.alert(` Parabéns ${name} esta cadastrado no sistema 😀`)    
+    Alert.alert(` Parabéns ${name} esta cadastrado no sistema 😀`) 
+    navigation.navigate('Login')
 
   }
+
+  function goLogin(){
+    navigation.navigate('Login')
+  }
+
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -93,7 +100,7 @@ export function Register() {
           </RectButton>
           <Button title="Cadastrar" onPress={handleSubmit}/>
           
-          <Button title="Voltar para o login"/>
+          <Button title="Voltar para o login" onPress={goLogin}/>
         </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>
