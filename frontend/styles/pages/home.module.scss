@@ -1,0 +1,86 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.containerForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    box-shadow: 8px 4px 4px gray;
+    width: 28rem;
+    height: 38rem;
+    border-radius: 1rem;
+    h1{
+        font-weight: bold;
+        align-self: center;
+        color: var(--text);
+        padding: 1rem;
+    }
+    form{
+        display: flex;
+        flex-direction: column;      
+    }
+    input {
+        background-color: var(--input);
+        border-radius: 0.5rem;
+        margin: 0.5rem;
+        padding-left: 0.5rem;
+        height: 2.5rem;
+        width: 18rem;
+        border:none;
+
+    }
+    h2{
+        font-size: 1rem;
+        padding-left: 0.2rem;
+        margin-top: 0.1rem;
+
+    }
+    h3{
+        color: red;
+        text-align: center;
+        font-weight: normal;
+        min-height: 1.5rem;
+    }
+    .buttonPassword{
+        display: flex;
+        flex-direction: row;
+        border: none;
+        background-color: transparent;
+        padding: 0.5rem;
+        padding-bottom: 1rem;  
+    }
+    .buttons{
+        margin: 0.5rem;
+        height: 2.5rem;
+        color: var(--textButton);
+        background-color: var(--colorButton);
+        border-radius: 0.4rem;
+        font-size: 1.2rem;
+        border:none;
+        transition: filter 0.2s;
+
+        &:hover{
+            background-color: #20229b;
+        }
+    }
+    
+}
+
+@media(max-width:420px){
+    .containerForm{
+        width: 20rem;
+        height: 32rem;
+        input {
+            width: 15rem;
+        }
+    }
+   
+}
