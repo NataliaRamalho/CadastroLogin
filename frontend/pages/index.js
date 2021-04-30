@@ -3,6 +3,7 @@ import {AiOutlineEyeInvisible, AiOutlineEye} from 'react-icons/ai';
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Head from 'next/head';
+import axios from 'axios'
 
 export default function Home() {
   const [isHidePassword, setIsHidePassword] = useState(true);
@@ -27,12 +28,15 @@ export default function Home() {
     push('/register')
   }
 
-  function login(event){
+  async function login(event){
     event.preventDefault();
     setErroMenssage('')
     if(email == '' || password == ''){
-      setErroMenssage('Voce deve preencher todos os campos')
+      return setErroMenssage('Voce deve preencher todos os campos')
     }
+    await axios.post('http://localhost:3333/login',{email, password})
+              .then((user)=>{alert(`${user.data.name} realizou o login no sistema`)})
+              .catch(error =>{setErroMenssage(error.response.data)})
 
   }
 

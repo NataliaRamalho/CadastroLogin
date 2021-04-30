@@ -10,16 +10,19 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+import axios from 'axios'
 import { Button } from "../components/Button";
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import colors from "../styles/colors";
 import { useNavigation } from "@react-navigation/core";
 
+import env from '../utils/env';
+
 export function Register() {
-  const[name, setName] = useState<String>()
-  const[email, setEmail] = useState<String>()
-  const[password, setPassword] = useState<String>()
+  const[name, setName] = useState('')
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
   const [hide, setHide] = useState(true);
   const navigation = useNavigation();
 
@@ -38,7 +41,8 @@ export function Register() {
   function handleHide() {
     setHide(!hide);
   }
-  function handleSubmit(){
+
+  async function handleSubmit(){
     if(!name){
       return Alert.alert('Voce não digitou seu nome 🧐')
     }
@@ -48,9 +52,12 @@ export function Register() {
     if(!password){
       return Alert.alert('Voce não digitou sua senha 🧐')
     }
-    Alert.alert(` Parabéns ${name} esta cadastrado no sistema 😀`) 
-    navigation.navigate('Login')
-
+    return await axios.post(`${env.apiUrl}/register`,{name,email, password})
+      .then((user)=>{
+          Alert.alert(` Parabéns ${user.data.name} esta cadastrado no sistema 😀`)
+          navigation.navigate('Login')
+      })
+      .catch(error =>{Alert.alert(`${error!.response.data} ` || 'não foi possível conectar ao servidor 😢')})
   }
 
   function goLogin(){
@@ -71,18 +78,22 @@ export function Register() {
             style={styles.input} 
             placeholder="Digite seu nome"
             onChangeText={handleInputName}
+            value={name}
+
              />
 
           <TextInput 
             style={styles.input} 
             placeholder="Digite seu email"
             onChangeText={handleInputEmail}
+            value={email}
              />
           <TextInput
             style={styles.input}
             placeholder="Digite sua senha"
             secureTextEntry={hide}
             onChangeText={handleInputPassword}
+            value={password}
           />
 
           <RectButton

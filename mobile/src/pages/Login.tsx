@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
+import axios from 'axios'
+
+import env from '../utils/env';
+
 import {
   StyleSheet,
   Text,
@@ -10,6 +14,7 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+
 import { Button } from "../components/Button";
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
@@ -17,8 +22,9 @@ import colors from "../styles/colors";
 import { useNavigation } from "@react-navigation/core";
 
 export function Login() {
-  const[email, setEmail] = useState<String>()
-  const[password, setPassword] = useState<String>()
+
+  const[email, setEmail] = useState('');
+  const[password, setPassword] = useState('');
   const [hide, setHide] = useState(true);
   const navigation = useNavigation();
 
@@ -33,16 +39,23 @@ export function Login() {
   function handleHide() {
     setHide(!hide);
   }
-  function handleSubmit(){
+  async function handleSubmit(){
     if(!email){
       return Alert.alert('Voce não digitou seu email 🧐')
     }
     if(!password){
       return Alert.alert('Voce não digitou sua senha 🧐')
     }
+
+    return await axios.post(`${env.apiUrl}/login`,{email, password})
+              .then((user)=>{Alert.alert(`${user.data.name} realizou o login no sistema 😃`)})
+              .catch(error =>{Alert.alert(`${error!.response.data} ` || 'não foi possível conectar ao servidor 😢')})
+    
   }
 
   function goRegister(){
+    setEmail('')
+    setPassword('')
     navigation.navigate('Register')
   }
 
@@ -58,12 +71,14 @@ export function Login() {
             style={styles.input} 
             placeholder="Digite seu email"
             onChangeText={handleInputEmail}
+            value={email}
              />
           <TextInput
             style={styles.input}
             placeholder="Digite sua senha"
             secureTextEntry={hide}
             onChangeText={handleInputPassword}
+            value={password}
           />
 
           <RectButton

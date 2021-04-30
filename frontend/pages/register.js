@@ -3,6 +3,7 @@ import {AiOutlineEyeInvisible, AiOutlineEye} from 'react-icons/ai'
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Head from 'next/head';
+import axios from 'axios'
 
 export default function Register() {
   const [isHidePassword, setIsHidePassword] = useState(true);
@@ -31,13 +32,18 @@ export default function Register() {
     push('/')
 
   }
-  function register(event){
+  async function register(event){
     event.preventDefault();
     setErroMenssage('')
     if(name == '' || email == '' || password == ''){
-      setErroMenssage('Voce deve preencher todos os campos')
+      return setErroMenssage('Voce deve preencher todos os campos')
     }
-
+    await axios.post('http://localhost:3333/register',{name,email,password})
+              .then((user)=>{
+                alert(`${user.data.name} realizou o cadastro  no sistema`)
+                push('/')
+              })
+              .catch(error =>{setErroMenssage(error.response.data)})
   }
 
   return (
