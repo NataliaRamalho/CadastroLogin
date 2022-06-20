@@ -2,6 +2,6 @@ module.exports={
     db: {
         username: '',
         password: '',
-        database:'',
+        database:'cadastro-login',
     }
 }
