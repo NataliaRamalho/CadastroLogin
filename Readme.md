@@ -43,7 +43,7 @@ git clone https://github.com/NataliaRamalho/CadastroLogin.git
 
 `````
 
-## Executando o backend da aplicação
+## Executando o backend
 - Abra o projeto em um editor de código  
 - Digite no terminal o comando a seguir, para entrar na pasta do backend 
 
@@ -83,10 +83,10 @@ git clone https://github.com/NataliaRamalho/CadastroLogin.git
 ```
 Parabéns o backend está executando 😃.  
 
-## Testando as rotas 
+### Testando as rotas 
 - Abra o [Insomnia](https://insomnia.rest/download) ou [Postman](https://www.postman.com/downloads/)
 
-### Rota de cadastro de usuário 
+#### Rota de cadastro de usuário 
 - Execute o método POST, na url: http://localhost:3333/register , passando o seguinte corpo:
 
 ```
@@ -96,7 +96,7 @@ Parabéns o backend está executando 😃.
 	"password": "123"
 }
 ```
-### Rota de login
+#### Rota de login
 - Execute o método POST, na url: http://localhost:3333/login , passando o seguinte corpo:
 
 ```
@@ -106,7 +106,7 @@ Parabéns o backend está executando 😃.
 }
 ```
 
-## Executando o frontend da aplicação (web)
+## Executando o frontend (web)
 - Com o backend rodando, abra outro terminal e digite o comando a seguir, para entrar na pasta do frontend
 
 ```
@@ -130,7 +130,7 @@ Parabéns o backend está executando 😃.
 ```
 Parabéns o frontend está executando na url: http://localhost:3000/.  
 
-## Executando o a versão mobile da aplicação
+## Executando o a versão mobile
 - Com o backend rodando, abra outro terminal e digite o comando a seguir, para entrar na pasta mobile
 
 ```
@@ -157,4 +157,4 @@ Parabéns o frontend está executando na url: http://localhost:3000/.
    ou
    npm dev
 ```
-Parabéns a versão executando. Agora é só ler o QrCode com o aplicativo do expo ou abrir pelo emulador. 
+Parabéns a versão mobile está executando. Agora é só ler o QrCode com o aplicativo do expo ou abrir pelo emulador. 
