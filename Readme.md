@@ -158,3 +158,6 @@ Parabéns o frontend está executando na url: http://localhost:3000/.
    npm dev
 ```
 Parabéns a versão mobile está executando 😃. Agora é só ler o QrCode com o aplicativo do expo ou abrir pelo emulador. 
+
+
+⏰ Projeto desenvolvido em abril/2021
